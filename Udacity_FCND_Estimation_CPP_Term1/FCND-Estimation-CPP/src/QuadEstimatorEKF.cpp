@@ -396,6 +396,17 @@ void QuadEstimatorEKF::UpdateFromMag(float magYaw)
    // set last HPrime Value to 1 according to 
    hPrime(0, 6) = 1;
     
+    /*
+     Reviewers suggestion Great Input
+     MatrixXf hPrime(6, QUAD_EKF_NUM_STATES);
+     hPrime.setZero();
+     
+     // GPS UPDATE
+     
+     hPrime.topLeftCorner(QUAD_EKF_NUM_STATES - 1, QUAD_EKF_NUM_STATES - 1) = MatrixXf::Identity(QUAD_EKF_NUM_STATES - 1, QUAD_EKF_NUM_STATES - 1);
+     zFromX = hPrime * ekfState;
+     */
+    
     /////////////////////////////// END STUDENT CODE ////////////////////////////
     
     Update(z, hPrime, R_Mag, zFromX);
